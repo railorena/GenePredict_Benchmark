@@ -1,4 +1,4 @@
-To execute the client to download datasets, download geneRFinderClient.jar and execute:
+To execute the client to download datasets, [download geneRFinderClient.jar](https://github.com/kriowloo/raissa/raw/master/geneRFinderClient.jar) and execute:
 
 ```sh
   $ java -jar geneRFinderClient.jar <dataset_name> <resource_name>
