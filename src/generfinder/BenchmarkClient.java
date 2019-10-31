@@ -6,7 +6,7 @@ import java.net.URL;
 
 public class BenchmarkClient{
     public static final String baseHost = "https://github.com/kriowloo/raissa/raw/master/";
-    private static String[] datasetNames = {"training1", "training2"};
+    private static String[] datasetNames = {"training1", "validation", "training2", "test1", "test2low", "test2medium", "test2high1", "test2high2", "test2high3"};
     private static String[] resources = {"orfs", "groundtruth", "genomes"};
     private static String[] filenames = {"orfs.fasta", "groundtruth.csv", "genomes.csv"};
 
