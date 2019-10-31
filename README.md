@@ -9,4 +9,4 @@ Example: to download the file with ORFs from dataset *training1*, run:
 ```sh
   $ java -jar geneRFinderClient.jar training1 orfs
 ```
-This execution will download file *orfs.fasta* from dataset *training1*.
+This execution will download file *orfs.fasta* from dataset *training1* and save it into the current folder.
