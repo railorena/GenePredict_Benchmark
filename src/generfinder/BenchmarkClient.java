@@ -2,10 +2,13 @@ package generfinder;
 
 import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.BufferedReader;
 import java.net.URL;
 
 public class BenchmarkClient{
-    public static final String baseHost = "https://github.com/kriowloo/raissa/raw/master/";
+    public static final String baseHost = "http://downloads.sourceforge.net/generfinder-benchmark/";
     private static String[] datasetNames = {"training1", "validation", "training2", "test1", "test2low", "test2medium", "test2high1", "test2high2", "test2high3"};
     private static String[] resources = {"orfs", "groundtruth", "genomes"};
     private static String[] filenames = {"orfs.fasta", "groundtruth.csv", "genomes.csv"};
@@ -34,6 +37,7 @@ public class BenchmarkClient{
     }
 
     public static void download(String datasetName, String resource){
+        String curlString = "curl -L http://downloads.sourceforge.net/generfinder-benchmark/";
         String[] fileNames = checkResource(datasetName, resource);
         if (fileNames == null){
             System.out.println("Resource and/or dataset not found. Please, check then and try again.");
@@ -41,18 +45,23 @@ public class BenchmarkClient{
         }
         for (String fileName : fileNames){
             try{
-                String url = baseHost + datasetName + "/" + fileName;
-                BufferedInputStream in = new BufferedInputStream(new URL(url).openStream());
+                String url = curlString + datasetName + "/" + fileName;
+                String cmd = url;
                 FileOutputStream fileOutputStream = new FileOutputStream(fileName);
-                byte dataBuffer[] = new byte[1024];
-                int bytesRead;
-                while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
+                Process process = Runtime.getRuntime().exec(cmd);
+                process.waitFor();
+                final BufferedReader outputReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                String line;
+                while ((line = outputReader.readLine()) != null) {
+                    byte[] dataBuffer = (line + System.lineSeparator()).getBytes();
+                    int bytesRead = dataBuffer.length;
                     fileOutputStream.write(dataBuffer, 0, bytesRead);
                 }
+                outputReader.close();
                 fileOutputStream.close();
-                in.close();
                 System.out.println("File " + fileName + " downloaded successfully!");
             }catch(Exception e){
+                System.out.println(e);
                 System.out.println("Error to download resource. Please, check your internet connection and try again.");
             }
         }
