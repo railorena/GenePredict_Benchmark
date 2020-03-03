@@ -1,6 +1,6 @@
 # Usage
 
-To execute the client in order to download datasets, [download geneRFinderClient.jar](https://github.com/kriowloo/raissa/raw/master/geneRFinderClient.jar), check if you have Java JRE version 1.5 (or higher) installed and then execute:
+To execute the client in order to download datasets, [download geneRFinderClient.jar](https://github.com/kriowloo/raissa/raw/master/geneRFinderClient.jar), check if you have Java JRE version 8 (or higher) installed and then execute:
 
 ```sh
   $ java -jar geneRFinderClient.jar <dataset_name> <resource_name>
