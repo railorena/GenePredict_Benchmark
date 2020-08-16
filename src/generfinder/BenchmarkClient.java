@@ -10,8 +10,8 @@ import java.net.URL;
 public class BenchmarkClient{
     public static final String baseHost = "http://downloads.sourceforge.net/generfinder-benchmark/";
     private static String[] datasetNames = {"training1", "validation", "training2", "test1", "test2low", "test2medium", "test2high1", "test2high2", "test2high3"};
-    private static String[] resources = {"orfs", "groundtruth", "genomes"};
-    private static String[] filenames = {"orfs.fasta", "groundtruth.csv", "genomes.csv"};
+    private static String[] resources = {"sequences", "groundtruth", "genomes"};
+    private static String[] filenames = {"sequences.fasta", "groundtruth.csv", "genomes.csv"};
 
     private static String[] checkResource(String datasetName, String resource){
         boolean datasetFound = false;
@@ -99,7 +99,7 @@ public class BenchmarkClient{
             System.out.println("             dataset_name: " + getDatasetNamesAsString());
             System.out.println("             resource_name: " + getResourcesAsString() + " (or 'all' to download all resources)");
             System.out.println("");
-            System.out.println("Example: java -jar geneRFinderClient.jar training1 orfs");
+            System.out.println("Example: java -jar geneRFinderClient.jar training1 sequences");
             return;
         }
         download(args[0], args[1]);
